@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John Doe | Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom CSS */
+        :root {
+            --primary-color: #3a86ff;
+            --secondary-color: #8338ec;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            transition: background 0.3s ease;
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        #filter-section {
+            transition: all 0.3s ease;
+        }
+        
+        .task-item {
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* Dark mode toggle styles */
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #68D391;
+        }
+        
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #68D391;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 min-h-screen">
+    <!-- Navigation -->
+    <header class="gradient-bg text-white shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-2xl font-bold">JD</div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden focus:outline-none">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+            
+            <!-- Dark mode toggle -->
+            <div class="ml-4 flex items-center">
+                <span class="mr-2 text-sm hidden md:inline">Dark Mode</span>
+                <div class="relative inline-block w-10 mr-2 align-middle select-none">
+                    <input type="checkbox" id="toggle" class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer"/>
+                    <label for="toggle" class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 cursor-pointer"></label>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden px-6 py-4 gradient-bg">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="container mx-auto px-6 py-20 text-center">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-5xl md:text-6xl font-bold mb-6">Hi, I'm <span class="text-transparent bg-clip-text gradient-bg">John Doe</span></h1>
+            <h2 class="text-2xl md:text-3xl text-gray-600 mb-8">Full Stack Developer & UI/UX Designer</h2>
+            <div class="flex justify-center space-x-4">
+                <button class="px-6 py-3 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition">View Projects</button>
+                <button class="px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 transition">Contact Me</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="container mx-auto px-6 py-16 bg-gray-100 rounded-xl my-10">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <div class="w-48 h-48 mx-auto rounded-full overflow-hidden border-4 border-white shadow-lg">
+                        <img src="https://placehold.co/400x400" alt="Professional headshot of John Doe wearing a blue shirt against a neutral background" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:w-2/3 md:pl-12">
+                    <p class="text-lg mb-4">I'm a passionate full-stack developer with 5+ years of experience creating beautiful, functional web applications.</p>
+                    <p class="text-lg mb-6">Specializing in JavaScript frameworks and modern CSS, I bridge the gap between design and technical implementation to deliver exceptional user experiences.</p>
+                    
+                    <h3 class="text-xl font-bold mb-4">Technical Skills</h3>
+                    <div class="flex flex-wrap gap-3 mb-8">
+                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full">JavaScript</span>
+                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full">React</span>
+                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full">Node.js</span>
+                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full">MongoDB</span>
+                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full">CSS3</span>
+                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full">HTML5</span>
+                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full">Tailwind</span>
+                        <span class="px-4 py-2 bg-blue-100 text-blue-800 rounded-full">Git</span>
+                    </div>
+                    
+                    <button class="px-6 py-2 border-2 border-blue-600 text-blue-600 rounded-full hover:bg-blue-50 transition">Download Resume</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="container mx-auto px-6 py-16">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold mb-12 text-center">My Projects</h2>
+            
+            <!-- Project Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400" alt="E-commerce website dashboard showing analytics charts and product listings" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">E-commerce Dashboard</h3>
+                        <p class="text-gray-600 mb-4">A comprehensive admin dashboard for managing products, orders, and analytics.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">React</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Node.js</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">MongoDB</span>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-800 font-medium">View Project →</button>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400" alt="Mobile app interface showing health tracking metrics and workout statistics" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Fitness Tracker App</h3>
+                        <p class="text-gray-600 mb-4">Mobile application for tracking workouts, nutrition, and health metrics.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">React Native</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Firebase</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Redux</span>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-800 font-medium">View Project →</button>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="h-48 overflow-hidden">
+                        <img src="https://placehold.co/600x400" alt="Social media platform interface with user profiles and news feed" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Social Media Platform</h3>
+                        <p class="text-gray-600 mb-4">A niche social network for connecting professionals in specific industries.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Vue.js</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Django</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">PostgreSQL</span>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-800 font-medium">View Project →</button>
+                    </div>
+                </div>
+                
+                <!-- Project 4 - Todo App -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="h-48 overflow-hidden bg-gray-50 flex items-center justify-center">
+                        <img src="https://placehold.co/600x400" alt="Todo application interface showing task list with checkboxes" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Task Manager</h3>
+                        <p class="text-gray-600 mb-4">An interactive to-do list application with persistent storage.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">LocalStorage</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">HTML5</span>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-800 font-medium" onclick="toggleTodoApp()">Try Demo →</button>
+                    </div>
+                </div>
+                
+                <!-- Project 5 - Product Filter -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="h-48 overflow-hidden bg-gray-50 flex items-center justify-center">
+                        <img src="https://placehold.co/600x400" alt="E-commerce product filtering interface with category selections" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Product Catalog</h3>
+                        <p class="text-gray-600 mb-4">Interactive product filtering and sorting system.</p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">JavaScript</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">CSS3</span>
+                            <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">Responsive Design</span>
+                        </div>
+                        <button class="text-blue-600 hover:text-blue-800 font-medium" onclick="toggleProductFilter()">Try Demo →</button>
+                    </div>
+                </div>
+                
+                <!-- Project Placeholder -->
+                <div class="project-card bg-white rounded-xl shadow-md overflow-hidden transition duration-300">
+                    <div class="h-48 overflow-hidden bg-gray-100 flex items-center justify-center">
+                        <div class="text-gray-400 text-center p-8">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/>
+                            </svg>
+                            <p class="text-gray-500">More projects coming soon!</p>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Your Project Here</h3>
+                        <p class="text-gray-600 mb-4">Have an interesting project idea? Let's discuss!</p>
+                        <button class="text-blue-600 hover:text-blue-800 font-medium">Contact Me →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Todo App Demo (Hidden by default) -->
+    <div id="todo-app-demo" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-md w-full mx-auto p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800">Todo App</h3>
+                <button onclick="toggleTodoApp()" class="text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="mb-6">
+                <div class="flex">
+                    <input type="text" id="task-input" placeholder="Add a new task..." class="flex-grow px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button id="add-task-btn" class="px-4 py-2 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700 transition">Add</button>
+                </div>
+            </div>
+            
+            <div id="task-filters" class="mb-6 flex space-x-2">
+                <button class="filter-btn active px-3 py-1 bg-blue-600 text-white rounded-full" data-filter="all">All</button>
+                <button class="filter-btn px-3 py-1 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition" data-filter="active">Active</button>
+                <button class="filter-btn px-3 py-1 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition" data-filter="completed">Completed</button>
+            </div>
+            
+            <div id="task-list" class="space-y-3">
+                <!-- Tasks will be added here dynamically -->
+                <p id="no-tasks-message" class="text-gray-500 text-center py-4">No tasks yet. Add your first task!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Filter Demo (Hidden by default) -->
+    <div id="product-filter-demo" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden items-center justify-center p-4">
+        <div class="bg-white rounded-xl max-w-4xl w-full mx-auto p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-800">Product Filter</h3>
+                <button onclick="toggleProductFilter()" class="text-gray-500 hover:text-gray-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            
+            <div id="filter-section" class="mb-8 p-4 bg-gray-50 rounded-lg">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                        <select id="category-filter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="all">All Categories</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="clothing">Clothing</option>
+                            <option value="home">Home & Garden</option>
+                            <option value="books">Books</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Price Range</label>
+                        <select id="price-filter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="all">All Prices</option>
+                            <option value="0-50">$0 - $50</option>
+                            <option value="50-100">$50 - $100</option>
+                            <option value="100-500">$100 - $500</option>
+                            <option value="500+">$500+</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Sort By</label>
+                        <select id="sort-filter" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="default">Default</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="rating">Highest Rated</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Products will be added here dynamically -->
+            </div>
+            
+            <div id="no-products-message" class="text-center py-8 text-gray-500 hidden">
+                No products match your filters. Try adjusting your criteria.
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <section id="contact" class="container mx-auto px-6 py-16 bg-gray-100 rounded-xl my-10">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold mb-8 text-center">Get In Touch</h2>
+            
+            <div class="flex flex-col md:flex-row gap-12">
+                <div class="md:w-1/2">
+                    <h3 class="text-xl font-semibold mb-4">Contact Information</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                            <div>
+                                <h4 class="font-medium">Phone</h4>
+                                <p class="text-gray-600">+1 (555) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                            <div>
+                                <h4 class="font-medium">Email</h4>
+                                <p class="text-gray-600">john.doe@example.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600 mt-1 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                            </svg>
+                            <div>
+                                <h4 class="font-medium">Location</h4>
+                                <p class="text-gray-600">San Francisco, CA</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8">
+                        <h3 class="text-xl font-semibold mb-4">Connect With Me</h3>
+                        <div class="flex space-x-4">
+                            <a href="#" class="text-gray-700 hover:text-blue-600 transition">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="text-gray-700 hover:text-blue-600 transition">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm6.066 9.645c.183 4.038-2.83 8.544-8.164 8.544-1.622 0-3.131-.476-4.402-1.291 1.524.18 3.045-.244 4.252-1.189-1.256-.023-2.317-.854-2.684-1.995.451.086.895.061 1.298-.049-1.381-.278-2.335-1.522-2.304-2.853.388.215.83.344 1.301.359-1.279-.855-1.641-2.544-.889-3.835 1.416 1.738 3.533 2.881 5.92 3.001-.419-1.796.944-3.527 2.799-3.527.825 0 1.572.349 2.096.907.654-.128 1.27-.368 1.824-.697-.215.671-.67 1.233-1.263 1.589.581-.07 1.135-.224 1.649-.453-.384.578-.87 1.084-1.433 1.489z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="text-gray-700 hover:text-blue-600 transition">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/>
+                                </svg>
+                            </a>
+                            <a href="#" class="text-gray-700 hover:text-blue-600 transition">
+                                <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M12 0c-6.626 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 16h-2v-6h2v6zm-1-6.891c-.607 0-1.1-.496-1.1-1.109 0-.612.492-1.109 1.1-1.109s1.1.497 1.1 1.109c0 .613-.493 1.109-1.1 1.109zm8 6.891h-1.998v-2.861c0-1.881-2.002-1.722-2.002 0v2.861h-2v-6h2v1.093c.872-1.616 4-1.736 4 1.548v3.359z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                    <form id="contact-form" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Your Name</label>
+                            <input type="text" id="name" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email Address</label>
+                            <input type="email" id="email" name="email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject</label>
+                            <input type="text" id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message</label>
+                            <textarea id="message" name="message" rows="4" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="gradient-bg text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2023 John Doe. All rights reserved.</p>
+            
+            <div class="mt-4 flex justify-center space-x-6">
+                <a href="#" class="hover:text-blue-200 transition">Privacy Policy</a>
+                <a href="#" class="hover:text-blue-200 transition">Terms of Service</a>
+                <a href="#" class="hover:text-blue-200 transition">Sitemap</a>
+            </div>
+            
+            <div class="mt-6">
+                <p>Built with ❤️ using HTML, CSS, and JavaScript</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                    
+                    // Scroll to the target
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Dark mode toggle
+        const toggle = document.getElementById('toggle');
+        const body = document.body;
+        
+        // Check for saved user preference or use system preference
+        if (localStorage.getItem('darkMode') === 'enabled' || 
+            (!localStorage.getItem('darkMode') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            enableDarkMode();
+            toggle.checked = true;
+        }
+        
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                enableDarkMode();
+            } else {
+                disableDarkMode();
+            }
+        });
+        
+        function enableDarkMode() {
+            body.classList.add('bg-gray-900', 'text-gray-100');
+            body.classList.remove('bg-gray-50', 'text-gray-800');
+            
+            // Update elements that need special dark mode classes
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.classList.add('bg-gray-800');
+                card.classList.remove('bg-white');
+            });
+            
+            localStorage.setItem('darkMode', 'enabled');
+        }
+        
+        function disableDarkMode() {
+            body.classList.add('bg-gray-50', 'text-gray-800');
+            body.classList.remove('bg-gray-900', 'text-gray-100');
+            
+            // Revert elements that had dark mode classes
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.classList.add('bg-white');
+                card.classList.remove('bg-gray-800');
+            });
+            
+            localStorage.setItem('darkMode', 'disabled');
+        }
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Todo App Functionality
+        let taskId = 0;
+        
+        function toggleTodoApp() {
+            const todoApp = document.getElementById('todo-app-demo');
+            todoApp.classList.toggle('hidden');
+            todoApp.classList.toggle('flex');
+            
+            if (!todoApp.classList.contains('hidden')) {
+                loadTasks();
+            }
+        }
+        
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const taskList = document.getElementById('task-list');
+            const noTasksMessage = document.getElementById('no-tasks-message');
+            
+            taskList.innerHTML = '';
+            
+            if (tasks.length === 0) {
+                noTasksMessage.classList.remove('hidden');
+                return;
+            }
+            
+            noTasksMessage.classList.add('hidden');
+            
+            tasks.forEach(task => {
+                addTaskToDOM(task);
+                taskId = Math.max(taskId, task.id);
+            });
+            
+            updateFilterButtons();
+        }
+        
+        function addTaskToDOM(task) {
+            const taskList = document.getElementById('task-list');
+            const noTasksMessage = document.getElementById('no-tasks-message');
+            
+            noTasksMessage.classList.add('hidden');
+            
+            const taskElement = document.createElement('div');
+            taskElement.className = `task-item flex items-center justify-between p-3 bg-gray-50 rounded-lg ${task.completed ? 'bg-green-50' : ''}`;
+            taskElement.dataset.id = task.id;
+            taskElement.dataset.status = task.completed ? 'completed' : 'active';
+            
+            taskElement.innerHTML = `
+                <div class="flex items-center">
+                    <input type="checkbox" ${task.completed ? 'checked' : ''} class="task-checkbox h-5 w-5 text-blue-600 rounded focus:ring-blue-500 mr-3">
+                    <span class="${task.completed ? 'line-through text-gray-500' : 'text-gray-700'}">${task.text}</span>
+                </div>
+                <button class="delete-task text-red-500 hover:text-red-700">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                    </svg>
+                </button>
+            `;
+            
+            taskList.appendChild(taskElement);
+            
+            // Add event listeners for the new elements
+            const checkbox = taskElement.querySelector('.task-checkbox');
+            checkbox.addEventListener('change', () => toggleTaskComplete(task.id));
+            
+            const deleteBtn = taskElement.querySelector('.delete-task');
+            deleteBtn.addEventListener('click', () => deleteTask(task.id));
+        }
+        
+        function toggleTaskComplete(id) {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const taskIndex = tasks.findIndex(task => task.id === id);
+            
+            if (taskIndex !== -1) {
+                tasks[taskIndex].completed = !tasks[taskIndex].completed;
+                localStorage.setItem('tasks', JSON.stringify(tasks));
+                
+                const taskElement = document.querySelector(`.task-item[data-id="${id}"]`);
+                if (taskElement) {
+                    taskElement.dataset.status = tasks[taskIndex].completed ? 'completed' : 'active';
+                    const textSpan = taskElement.querySelector('span');
+                    textSpan.classList.toggle('line-through');
+                    textSpan.classList.toggle('text-gray-500');
+                    textSpan.classList.toggle('text-gray-700');
+                }
+                
+                updateFilterButtons();
+            }
+        }
+        
+        function deleteTask(id) {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const updatedTasks = tasks.filter(task => task.id !== id);
+            localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+            
+            const taskElement = document.querySelector(`.task-item[data-id="${id}"]`);
+            if (taskElement) {
+                taskElement.classList.add('opacity-0', 'transition', 'duration-300');
+                setTimeout(() => taskElement.remove(), 300);
+            }
+            
+            // Show no tasks message if all tasks are deleted
+            const taskList = document.getElementById('task-list');
+            if (taskList.children.length === 1) { // 1 because we haven't removed this element yet
+                document.getElementById('no-tasks-message').classList.remove('hidden');
+            }
+        }
+        
+        document.getElementById('add-task-btn').addEventListener('click', addNewTask);
+        
+        document.getElementById('task-input').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addNewTask();
+            }
+        });
+        
+        function addNewTask() {
+            const input = document.getElementById('task-input');
+            const text = input.value.trim();
+            
+            if (text === '') return;
+            
+            taskId++;
+            const newTask = {
+                id: taskId,
+                text: text,
+                completed: false,
+                createdAt: new Date().toISOString()
+            };
+            
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            tasks.push(newTask);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            
+            addTaskToDOM(newTask);
+            input.value = '';
+        }
+        
+        function updateFilterButtons() {
+            const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+            const activeTasks = tasks.filter(task => !task.completed).length;
+            const completedTasks = tasks.filter(task => task.completed).length;
+            
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                const filter = btn.dataset.filter;
+                
+                if (filter === 'active') {
+                    btn.textContent = `Active (${activeTasks})`;
+                } else if (filter === 'completed') {
+                    btn.textContent = `Completed (${completedTasks})`;
+                }
+            });
+        }
+        
+        // Filter tasks
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const filter = this.dataset.filter;
+                
+                // Update active state
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active', 'bg-blue-600', 'text-white'));
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.add('bg-gray-200', 'text-gray-700'));
+                
+                this.classList.add('active', 'bg-blue-600', 'text-white');
+                this.classList.remove('bg-gray-200', 'text-gray-700');
+                
+                // Filter tasks
+                document.querySelectorAll('.task-item').forEach(task => {
+                    if (filter === 'all') {
+                        task.classList.remove('hidden');
+                    } else {
+                        if (task.dataset.status === filter) {
+                            task.classList.remove('hidden');
+                        } else {
+                            task.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        });
+
+        // Product Filter Functionality
+        const products = [
+            { id: 1, name: "Wireless Headphones", price: 89.99, category: "electronics", rating: 4.5, image: "https://placehold.co/300x200" },
+            { id: 2, name: "Smart Watch", price: 199.99, category: "electronics", rating: 4.2, image: "https://placehold.co/300x200" },
+            { id: 3, name: "Cotton T-Shirt", price: 24.99, category: "clothing", rating: 4.0, image: "https://placehold.co/300x200" },
+            { id: 4, name: "Denim Jeans", price: 59.99, category: "clothing", rating: 4.3, image: "https://placehold.co/300x200" },
+            { id: 5, name: "Coffee Table", price: 149.99, category: "home", rating: 4.7, image: "https://placehold.co/300x200" },
+            { id: 6, name: "Throw Pillow", price: 19.99, category: "home", rating: 4.1, image: "https://placehold.co/300x200" },
+            { id: 7, name: "JavaScript Book", price: 29.99, category: "books", rating: 4.8, image: "https://placehold.co/300x200" },
+            { id: 8, name: "Cookbook", price: 14.99, category: "books", rating: 4.4, image: "https://placehold.co/300x200" },
+            { id: 9, name: "Bluetooth Speaker", price: 79.99, category: "electronics", rating: 4.6, image: "https://placehold.co/300x200" },
+            { id: 10, name: "Leather Jacket", price: 129.99, category: "clothing", rating: 4.9, image: "https://placehold.co/300x200" }
+        ];
+
+        function toggleProductFilter() {
+            const productFilter = document.getElementById('product-filter-demo');
+            productFilter.classList.toggle('hidden');
+            productFilter.classList.toggle('flex');
+            
+            if (!productFilter.classList.contains('hidden')) {
+                renderProducts(products);
+            }
+        }
+
+        function renderProducts(productsToRender) {
+            const productGrid = document.getElementById('product-grid');
+            const noProductsMessage = document.getElementById('no-products-message');
+            
+            productGrid.innerHTML = '';
+            
+            if (productsToRender.length === 0) {
+                noProductsMessage.classList.remove('hidden');
+                return;
+            }
+            
+            noProductsMessage.classList.add('hidden');
+            
+            productsToRender.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'bg-white rounded-lg shadow-md overflow-hidden';
+                productCard.innerHTML = `
+                    <div class="relative pb-[70%] overflow-hidden">
+                        <img src="${product.image}" alt="${product.name} product image" class="absolute w-full h-full object-cover">
+                    </div>
+                    <div class="p-4">
+                        <h3 class="font-bold text-lg mb-2">${product.name}</h3>
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="font-bold text-blue-600">$${product.price.toFixed(2)}</span>
+                            <div class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                                <span class="ml-1">${product.rating}</span>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-2">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</p>
+                        <button class="w-full py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition">Add to Cart</button>
+                    </div>
+                `;
+                productGrid.appendChild(productCard);
+            });
+        }
+
+        // Setup filter event listeners
+        document.getElementById('category-filter').addEventListener('change', filterProducts);
+        document.getElementById('price-filter').addEventListener('change', filterProducts);
+        document.getElementById('sort-filter').addEventListener('change', filterProducts);
+
+        function filterProducts() {
+            const category = document.getElementById('category-filter').value;
+            const priceRange = document.getElementById('price-filter').value;
+            const sortOrder = document.getElementById('sort-filter').value;
+            
+            let filtered = [...products];
+            
+            // Filter by category
+            if (category !== 'all') {
+                filtered = filtered.filter(product => product.category === category);
+            }
+            
+            // Filter by price range
+            if (priceRange !== 'all') {
+                const [min, max] = priceRange === '500+' ? [500, Infinity] : priceRange.split('-').map(Number);
+                filtered = filtered.filter(product => {
+                    if (max === Infinity) return product.price >= min;
+                    return product.price >= min && product.price <= max;
+                });
+            }
+            
+            // Sort products
+            switch (sortOrder) {
+                case 'price-asc':
+                    filtered.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-desc':
+                    filtered.sort((a, b) => b.price - a.price);
+                    break;
+                case 'rating':
+                    filtered.sort((a, b) => b.rating - a.rating);
+                    break;
+                default:
+                    // No sort
+                    break;
+            }
+            
+            renderProducts(filtered);
+        }
+    </script>
+</body>
+</html>
