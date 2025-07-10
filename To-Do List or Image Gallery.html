@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Web Portfolio</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #34495e;
+            --light-color: #ecf0f1;
+            --danger-color: #e74c3c;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Main Grid Layout */
+        .container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+
+        @media (min-width: 768px) {
+            .container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        /* Sections */
+        section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        h2 {
+            color: var(--dark-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light-color);
+        }
+
+        /* Contact Form */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--dark-color);
+            font-weight: 500;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .error {
+            color: var(--danger-color);
+            font-size: 0.8rem;
+            margin-top: 0.3rem;
+            display: none;
+        }
+
+        /* Todo List */
+        .todo-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .todo-header {
+            display: flex;
+            margin-bottom: 1rem;
+        }
+
+        #todo-input {
+            flex-grow: 1;
+            margin-right: 1rem;
+        }
+
+        .todo-list {
+            list-style: none;
+        }
+
+        .todo-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            background-color: var(--light-color);
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+        }
+
+        .todo-item.completed {
+            opacity: 0.7;
+            text-decoration: line-through;
+        }
+
+        .todo-actions button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            margin-left: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .complete-btn {
+            color: var(--secondary-color);
+        }
+
+        .delete-btn {
+            color: var(--danger-color);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 1.5rem 0;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .nav-links {
+                margin-top: 1rem;
+            }
+
+            .nav-links li {
+                margin: 0 1rem;
+            }
+
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">WebPortfolio</div>
+            <ul class="nav-links">
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#todo">Todo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your name">
+                    <div id="name-error" class="error">Please enter your name</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="your.email@example.com">
+                    <div id="email-error" class="error">Please enter a valid email</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Your message..."></textarea>
+                    <div id="message-error" class="error">Please enter a message</div>
+                </div>
+                
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </section>
+
+        <section id="todo">
+            <h2>Todo List</h2>
+            <div class="todo-container">
+                <div class="todo-header">
+                    <input type="text" id="todo-input" placeholder="Add new task...">
+                    <button id="add-todo" class="btn">Add</button>
+                </div>
+                <ul id="todo-list" class="todo-list">
+                    <!-- Todo items will be added here by JavaScript -->
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2023 Web Portfolio | All Rights Reserved</p>
+    </footer>
+
+    <script>
+        // Form Validation
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            let isValid = true;
+            
+            // Name validation
+            const nameInput = document.getElementById('name');
+            const nameError = document.getElementById('name-error');
+            if (nameInput.value.trim() === '') {
+                nameError.style.display = 'block';
+                isValid = false;
+            } else {
+                nameError.style.display = 'none';
+            }
+            
+            // Email validation
+            const emailInput = document.getElementById('email');
+            const emailError = document.getElementById('email-error');
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value.trim())) {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+            
+            // Message validation
+            const messageInput = document.getElementById('message');
+            const messageError = document.getElementById('message-error');
+            if (messageInput.value.trim() === '') {
+                messageError.style.display = 'block';
+                isValid = false;
+            } else {
+                messageError.style.display = 'none';
+            }
+            
+            // If form is valid, submit it (in a real app, this would send to server)
+            if (isValid) {
+                alert('Form submitted successfully!');
+                this.reset();
+            }
+        });
+
+        // Todo List Functionality
+        const todoInput = document.getElementById('todo-input');
+        const addTodoBtn = document.getElementById('add-todo');
+        const todoList = document.getElementById('todo-list');
+        
+        // Load saved todos from localStorage
+        document.addEventListener('DOMContentLoaded', loadTodos);
+        
+        // Add todo event
+        addTodoBtn.addEventListener('click', addTodo);
+        todoInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTodo();
+            }
+        });
+        
+        function addTodo() {
+            const todoText = todoInput.value.trim();
+            if (todoText === '') return;
+            
+            const todoItem = createTodoElement(todoText);
+            todoList.appendChild(todoItem);
+            saveTodoToLocalStorage(todoText);
+            
+            todoInput.value = '';
+        }
+        
+        function createTodoElement(text) {
+            const li = document.createElement('li');
+            li.className = 'todo-item';
+            
+            const taskSpan = document.createElement('span');
+            taskSpan.textContent = text;
+            
+            const actionsDiv = document.createElement('div');
+            actionsDiv.className = 'todo-actions';
+            
+            const completeBtn = document.createElement('button');
+            completeBtn.className = 'complete-btn';
+            completeBtn.innerHTML = '✓';
+            completeBtn.addEventListener('click', function() {
+                li.classList.toggle('completed');
+                updateLocalStorage();
+            });
+            
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.innerHTML = '✕';
+            deleteBtn.addEventListener('click', function() {
+                li.remove();
+                updateLocalStorage();
+            });
+            
+            actionsDiv.appendChild(completeBtn);
+            actionsDiv.appendChild(deleteBtn);
+            
+            li.appendChild(taskSpan);
+            li.appendChild(actionsDiv);
+            
+            return li;
+        }
+        
+        // LocalStorage functions
+        function saveTodoToLocalStorage(todo) {
+            let todos;
+            if (localStorage.getItem('todos') === null) {
+                todos = [];
+            } else {
+                todos = JSON.parse(localStorage.getItem('todos'));
+            }
+            todos.push(todo);
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+        
+        function loadTodos() {
+            let todos;
+            if (localStorage.getItem('todos') === null) {
+                todos = [];
+            } else {
+                todos = JSON.parse(localStorage.getItem('todos'));
+            }
+            
+            todos.forEach(todo => {
+                const todoItem = createTodoElement(todo);
+                todoList.appendChild(todoItem);
+            });
+        }
+        
+        function updateLocalStorage() {
+            const todoItems = document.querySelectorAll('.todo-item');
+            const todos = [];
+            
+            todoItems.forEach(item => {
+                const text = item.querySelector('span').textContent;
+                const isCompleted = item.classList.contains('completed');
+                
+                if (!isCompleted) {
+                    todos.push(text);
+                }
+            });
+            
+            localStorage.setItem('todos', JSON.stringify(todos));
+        }
+    </script>
+</body>
+</html>
